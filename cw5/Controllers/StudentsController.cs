@@ -43,7 +43,7 @@ namespace cw3.Controllers
                     st.FirstName = dr["FirstName"].ToString();
                     st.LastName = dr["LastName"].ToString();
                     st.IndexNumber = dr["IndexNumber"].ToString();
-                    st.BirthDate = dr["BirthDate"].ToString();
+                    st.BirthDate = DateTime.Parse(dr["BirthDate"].ToString()).Date;
                     st.IdEnrollment = Int32.Parse(dr["IdEnrollment"].ToString());
                     st.StudyName = dr["Name"].ToString();
                     st.Semester = Int16.Parse(dr["Semester"].ToString());
@@ -78,7 +78,7 @@ namespace cw3.Controllers
                     st.FirstName = dr["FirstName"].ToString();
                     st.LastName = dr["LastName"].ToString();
                     st.IndexNumber = dr["IndexNumber"].ToString();
-                    st.BirthDate = dr["BirthDate"].ToString();
+                    st.BirthDate = DateTime.Parse(dr["BirthDate"].ToString()).Date;
                     st.IdEnrollment = Int32.Parse(dr["IdEnrollment"].ToString());
                     st.StudyName = dr["Name"].ToString();
                     st.Semester = Int16.Parse(dr["Semester"].ToString());
