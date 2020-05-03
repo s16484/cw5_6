@@ -215,5 +215,38 @@ namespace cw5.Services
 
             }
         }
+
+        public Student GetStudent(string index)
+        {
+            using (var con = new SqlConnection(ConString))
+            using (var command = new SqlCommand())
+            {
+                command.Connection = con;
+                command.CommandText = "select IndexNumber, FirstName, LastName, BirthDate, Name, Semester, s.IdEnrollment "
+                   + "from Student s, Enrollment e, Studies studies "
+                   + "where s.IdEnrollment = e.IdEnrollment AND e.IdStudy = studies.IdStudy "
+                   + "AND indexnumber=@id";
+                command.Parameters.AddWithValue("id", index);
+
+                con.Open();
+                var dr = command.ExecuteReader();
+                if (dr.Read())
+                {
+                    Student st = new Student();
+                    st.FirstName = dr["FirstName"].ToString();
+                    st.LastName = dr["LastName"].ToString();
+                    st.IndexNumber = dr["IndexNumber"].ToString();
+                    st.BirthDate = DateTime.Parse(dr["BirthDate"].ToString()).Date;
+                    st.IdEnrollment = Int32.Parse(dr["IdEnrollment"].ToString());
+                    st.StudyName = dr["Name"].ToString();
+                    st.Semester = Int16.Parse(dr["Semester"].ToString());
+                    return st;
+                }
+            }
+            return null;
+
+
+        }
+
     }
 }

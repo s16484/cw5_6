@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using cw3.DAL;
 using cw3.Models;
+using cw5.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace cw3.Controllers
@@ -13,17 +14,16 @@ namespace cw3.Controllers
     [Route("api/students")]
     public class StudentsController : ControllerBase
     {
-        private  IDbService _dbService;
+        private IStudentDbService _dbService;
         private const string ConString = "Data Source=db-mssql;Initial Catalog=s16484;Integrated Security=True";
        
-        public StudentsController(IDbService dbService)
+        public StudentsController(IStudentDbService dbService)
         {
             _dbService = dbService;
         }
 
         [HttpGet]
-
-        public IActionResult GetStudent(string orderBy)
+        public IActionResult GetStudents(string orderBy)
         {
             var list = new List<Student>();
 
@@ -54,38 +54,20 @@ namespace cw3.Controllers
             return Ok(list);
         }
 
+
+
         [HttpGet("{id}")]
-        public IActionResult GetStudentDetails(string id)
+        public IActionResult GetStudent(string id)
         {
-            using (var con = new SqlConnection(ConString))
-            using (var command = new SqlCommand())
+            
+            var student = _dbService.GetStudent(id);
+
+            if (student == null)
             {
-                command.Connection = con;
-                command.CommandText = "select IndexNumber, FirstName, LastName, BirthDate, Name, Semester, s.IdEnrollment "
-                   + "from Student s, Enrollment e, Studies studies "
-                   + "where s.IdEnrollment = e.IdEnrollment AND e.IdStudy = studies.IdStudy "
-                   +"AND indexnumber=@id";
-                command.Parameters.AddWithValue("id", id);
-
-                // SQL injetion
-                // localhost:65055/api/students/a';DROP TABLE students;--
-
-                con.Open();
-                var dr = command.ExecuteReader();
-                if (dr.Read())
-                {
-                    var st = new Student();
-                    st.FirstName = dr["FirstName"].ToString();
-                    st.LastName = dr["LastName"].ToString();
-                    st.IndexNumber = dr["IndexNumber"].ToString();
-                    st.BirthDate = DateTime.Parse(dr["BirthDate"].ToString()).Date;
-                    st.IdEnrollment = Int32.Parse(dr["IdEnrollment"].ToString());
-                    st.StudyName = dr["Name"].ToString();
-                    st.Semester = Int16.Parse(dr["Semester"].ToString());
-                    return Ok(st);
-                }
+                return NotFound("Nie znaleziono studenta"); ;
             }
-            return NotFound();
+            return Ok(student);
+          
 
         }
 /*
