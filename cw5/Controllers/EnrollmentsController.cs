@@ -8,12 +8,14 @@ using cw3.Models;
 using cw5.DTOs.Request;
 using cw5.DTOs.Responses;
 using cw5.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace cw5.Controllers
 {
     [Route("api/enrollments")]
     [ApiController]
+    [Authorize(Roles = "employee")]
     public class EnrollmentsController : ControllerBase
     {
         private IStudentDbService _dbservice;

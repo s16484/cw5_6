@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using cw3.DAL;
 using cw3.Models;
+using cw5.DTOs.Request;
 using cw5.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace cw3.Controllers
 {
@@ -15,11 +20,15 @@ namespace cw3.Controllers
     public class StudentsController : ControllerBase
     {
         private IStudentDbService _dbService;
+        private IConfiguration _configuration;
+
         private const string ConString = "Data Source=db-mssql;Initial Catalog=s16484;Integrated Security=True";
        
-        public StudentsController(IStudentDbService dbService)
+        public StudentsController(IStudentDbService dbService, IConfiguration configuration)
         {
             _dbService = dbService;
+            _configuration = configuration;
+
         }
 
         [HttpGet]
@@ -102,6 +111,34 @@ namespace cw3.Controllers
         {
             return Ok("Usuwanie zakończone");
         }
+
+        [HttpPost]
+        [Route("login")]
+        public IActionResult Login(LoginRequestDTO request)
+        {
+
+            var claims = _dbService.Login(request);
+            if (claims == null)
+            {
+                return Unauthorized();
+            }
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SecretKey"]));
+
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken(
+                issuer: "Gakko",
+                audience: "Students",
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(10),
+                signingCredentials: creds
+            );
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token)
+            });
+        }
+
 
     }
 }

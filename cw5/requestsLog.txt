@@ -37,3 +37,502 @@ Ciało żądania: {
 	"StudyName": "IT"
 }
 Query: ?LastName=Kowalski
+------- 23.05.2020 01:07:40 -------
+Metoda: GET
+Ścieżka: /api/students
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:07:47 -------
+Metoda: GET
+Ścieżka: /favicon.ico
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:07:56 -------
+Metoda: GET
+Ścieżka: /login
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:07:56 -------
+Metoda: GET
+Ścieżka: /favicon.ico
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:08:06 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s128078",
+	"Password": "Andrzej",
+}
+Query: 
+------- 23.05.2020 01:08:39 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "Andrzej",
+}
+Query: 
+------- 23.05.2020 01:08:56 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                              ",
+}
+Query: 
+------- 23.05.2020 01:08:58 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                              ",
+}
+Query: 
+------- 23.05.2020 01:08:59 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                              ",
+}
+Query: 
+------- 23.05.2020 01:10:07 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:19:30 -------
+Metoda: GET
+Ścieżka: /api/students
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:19:31 -------
+Metoda: GET
+Ścieżka: /favicon.ico
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:19:39 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:19:41 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:20:11 -------
+Metoda: GET
+Ścieżka: /api/students
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:20:11 -------
+Metoda: GET
+Ścieżka: /favicon.ico
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:20:18 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:20:28 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:20:30 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:20:31 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:21:17 -------
+Metoda: GET
+Ścieżka: /api/students
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:21:18 -------
+Metoda: GET
+Ścieżka: /favicon.ico
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:21:23 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:21:43 -------
+Metoda: GET
+Ścieżka: /api/students
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:21:43 -------
+Metoda: GET
+Ścieżka: /favicon.ico
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:21:45 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:21:47 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:22:25 -------
+Metoda: GET
+Ścieżka: /api/students
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:22:25 -------
+Metoda: GET
+Ścieżka: /favicon.ico
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:22:35 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:22:38 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:22:39 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:22:40 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:22:41 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:22:42 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:22:43 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:23:42 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:25:49 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:25:52 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:27:31 -------
+Metoda: POST
+Ścieżka: /login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:28:24 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:28:25 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:28:26 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:28:27 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:28:59 -------
+Metoda: GET
+Ścieżka: /api/students
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:28:59 -------
+Metoda: GET
+Ścieżka: /favicon.ico
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:29:13 -------
+Metoda: GET
+Ścieżka: /api/students
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:29:13 -------
+Metoda: GET
+Ścieżka: /favicon.ico
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:29:16 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:29:31 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:31:11 -------
+Metoda: GET
+Ścieżka: /api/students
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:31:11 -------
+Metoda: GET
+Ścieżka: /favicon.ico
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:31:15 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"IndexNumber": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:31:40 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"IndexNumber": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:31:41 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"IndexNumber": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:31:41 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"IndexNumber": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:31:43 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"IndexNumber": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:31:44 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"IndexNumber": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:36:46 -------
+Metoda: GET
+Ścieżka: /api/students
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:36:48 -------
+Metoda: GET
+Ścieżka: /favicon.ico
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:36:50 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"IndexNumber": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:36:57 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:36:59 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:37:14 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:37:16 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:37:17 -------
+Metoda: POST
+Ścieżka: /api/students
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"                                                                                            ",
+}
+Query: 
+------- 23.05.2020 01:51:14 -------
+Metoda: GET
+Ścieżka: /api/students
+Ciało żądania: 
+Query: 
+------- 23.05.2020 01:51:17 -------
+Metoda: POST
+Ścieżka: /api/students/login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"
+}
+Query: 
+------- 23.05.2020 01:51:20 -------
+Metoda: POST
+Ścieżka: /api/students/login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"
+}
+Query: 
+------- 23.05.2020 01:51:21 -------
+Metoda: POST
+Ścieżka: /api/students/login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"
+}
+Query: 
+------- 23.05.2020 01:51:22 -------
+Metoda: POST
+Ścieżka: /api/students/login
+Ciało żądania: {
+	"Login": "s12333",
+	"Password": "zaqwsx"
+}
+Query: 

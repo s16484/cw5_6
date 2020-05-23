@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace cw5.Services
@@ -247,6 +248,31 @@ namespace cw5.Services
 
 
         }
+
+        public Claim[] Login(LoginRequestDTO request)
+        {
+            using (var connection = new SqlConnection(ConString))
+            using (var command = new SqlCommand())
+            {
+                command.Connection = connection;
+                connection.Open();
+                command.CommandText = "select Role from Student where IndexNumber = @index and Password = @password;";
+                command.Parameters.AddWithValue("index", request.Login);
+                command.Parameters.AddWithValue("password", request.Password);
+                var dataReader = command.ExecuteReader();
+                if (dataReader.Read())
+                {
+                    return new[]
+                    {
+                        new Claim(ClaimTypes.Name, request.Login),
+                        new Claim(ClaimTypes.Role, dataReader["Role"].ToString())
+                    };
+                }
+            }
+            return null;
+        }
+
+
 
     }
 }
