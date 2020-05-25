@@ -90,23 +90,22 @@ namespace cw3.Controllers
         [HttpPost]
         public IActionResult CreateStudent(Student student)
         {
-            // add to database
-            // genrating index number
-
+            
             student.IndexNumber = $"s{new Random().Next(1, 20000)}";
 
+            student.Salt = SqlServerStudentDbService.CreateSalt();
+            student.Password = SqlServerStudentDbService.CreatePassword(student.Password, student.Salt);
+            _dbService.CreateStudent(student);
             return Ok(student);
         }
 
         [HttpPut("{id}")]
-
         public IActionResult UpdateStudent(int id, Student student)
         {
             return Ok("Aktualizacja zakończona powodzeniem");
         }
 
         [HttpDelete("{id}")]
-
         public IActionResult DeleteStudent(int id)
         {
             return Ok("Usuwanie zakończone");

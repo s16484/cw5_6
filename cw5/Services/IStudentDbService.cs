@@ -17,5 +17,8 @@ namespace cw5.Services
         public Student GetStudent(string id);
         public AuthenticationResult Login(LoginRequestDTO request);
         public AuthenticationResult Login(string request);
+
+        public void CreateStudent(Student student);
+
     }
 }

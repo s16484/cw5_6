@@ -10,6 +10,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Security.Cryptography;
 
 namespace cw5.Services
 {
@@ -251,19 +253,46 @@ namespace cw5.Services
 
 
         }
+        public void CreateStudent(Student student)
+        {
+            using (var client = new SqlConnection(ConString))
+            using (var command = new SqlCommand())
+            {
+                command.Connection = client;
+                client.Open();
+                command.CommandText = "INSERT INTO Student(IndexNumber,FirstName,LastName,BirthDate,IdEnrollment,Password, Salt) "+"" +
+                                        "VALUES (@indexNumber,@firstName,@lastName,@birthDate,@idEnrollment,@password,@salt)";
+                command.Parameters.AddWithValue("indexNumber", student.IndexNumber);
+                command.Parameters.AddWithValue("firstName", student.FirstName);
+                command.Parameters.AddWithValue("lastName", student.LastName);
+                command.Parameters.AddWithValue("birthDate", student.BirthDate);
+                command.Parameters.AddWithValue("idEnrollment", student.IdEnrollment);
+                command.Parameters.AddWithValue("password", student.Password);
+                command.Parameters.AddWithValue("salt", student.Salt);
+
+                var dr = command.ExecuteNonQuery();
+            };
+            
+        }
 
         public AuthenticationResult Login(LoginRequestDTO request)
         {
-            using (var connection = new SqlConnection(ConString))
-            using (var command = new SqlCommand())
+            if (CheckPass(request.Login, request.Password))
             {
-                command.Connection = connection;
-                connection.Open();
-                command.CommandText = "select Role from Student where IndexNumber = @index and Password = @password;";
-                command.Parameters.AddWithValue("index", request.Login);
-                command.Parameters.AddWithValue("password", request.Password);
-                return Authenticate(command);
-            };
+                using (var connection = new SqlConnection(ConString))
+                using (var command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    connection.Open();
+                    command.CommandText = "SELECT Role FROM Student WHERE IndexNumber = @index;";
+                    command.Parameters.AddWithValue("index", request.Login);
+                    return Authenticate(command);
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public AuthenticationResult Login(string token)
@@ -319,6 +348,64 @@ namespace cw5.Services
             command.ExecuteNonQuery();
         }
 
+        public static string CreatePassword(string password, string salt)
+        {
+            var valueBytes = KeyDerivation.Pbkdf2(
+                password: password,
+                salt: Encoding.UTF8.GetBytes(salt),
+                prf: KeyDerivationPrf.HMACSHA512,
+                iterationCount: 1000,
+                numBytesRequested: 32);
+            return Convert.ToBase64String(valueBytes);
+        }
+
+        public static string CreateSalt()
+        {
+            byte[] randomBytes = new byte[16];
+            using (var generator = RandomNumberGenerator.Create())
+            {
+                generator.GetBytes(randomBytes);
+                return Convert.ToBase64String(randomBytes);
+            }
+        }
+
+        public static bool Validate(string value, string salt, string hash)
+        {
+            var pass = CreatePassword(value, salt);
+            if (String.Equals(pass,hash))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public bool CheckPass(string login, string password)
+        {
+            using (var connection = new SqlConnection(ConString))
+            {
+                using (var command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    connection.Open();
+                    command.CommandText = "SELECT * FROM Student WHERE IndexNumber=@indexNumber";
+                    command.Parameters.AddWithValue("indexNumber", login);
+
+                    var dataReader = command.ExecuteReader();
+                    if (dataReader.Read())
+                    {
+                        string indexNumberDB = (string)dataReader["IndexNumber"];
+                        string passwordDB = (string)dataReader["Password"];
+                        string saltDB = (string)dataReader["Salt"];
+                        dataReader.Close();
+
+                        return Validate(password, saltDB, passwordDB);
+                    }
+                    else
+                        return false;
+                }
+            }
+        }
 
 
 
@@ -326,11 +413,5 @@ namespace cw5.Services
 
 
 
-
-
-
-
-
-
-    }     
+    }
 }
