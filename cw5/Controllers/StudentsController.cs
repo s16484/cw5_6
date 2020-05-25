@@ -116,26 +116,38 @@ namespace cw3.Controllers
         [Route("login")]
         public IActionResult Login(LoginRequestDTO request)
         {
-
             var claims = _dbService.Login(request);
-            if (claims == null)
+            return Authorize(claims);
+        }
+
+        [HttpPost("refresh/{token}")]
+        public IActionResult Login(string token)
+        {
+            var claims = _dbService.Login(token);
+            return Authorize(claims);
+        }
+
+        private IActionResult Authorize(AuthenticationResult result)
+        {
+            if (result == null)
             {
                 return Unauthorized();
             }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SecretKey"]));
-
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
             var token = new JwtSecurityToken(
                 issuer: "Gakko",
                 audience: "Students",
-                claims: claims,
+                claims: result.Claims,
                 expires: DateTime.Now.AddMinutes(10),
                 signingCredentials: creds
             );
             return Ok(new
             {
-                token = new JwtSecurityTokenHandler().WriteToken(token)
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                refreshToken = Guid.NewGuid()
             });
         }
 

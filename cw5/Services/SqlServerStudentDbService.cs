@@ -1,12 +1,15 @@
 ﻿using cw3.Models;
 using cw5.DTOs.Request;
 using cw5.DTOs.Responses;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 
 namespace cw5.Services
 {
@@ -249,7 +252,7 @@ namespace cw5.Services
 
         }
 
-        public Claim[] Login(LoginRequestDTO request)
+        public AuthenticationResult Login(LoginRequestDTO request)
         {
             using (var connection = new SqlConnection(ConString))
             using (var command = new SqlCommand())
@@ -259,20 +262,75 @@ namespace cw5.Services
                 command.CommandText = "select Role from Student where IndexNumber = @index and Password = @password;";
                 command.Parameters.AddWithValue("index", request.Login);
                 command.Parameters.AddWithValue("password", request.Password);
-                var dataReader = command.ExecuteReader();
-                if (dataReader.Read())
-                {
-                    return new[]
-                    {
-                        new Claim(ClaimTypes.Name, request.Login),
-                        new Claim(ClaimTypes.Role, dataReader["Role"].ToString())
-                    };
-                }
+                return Authenticate(command);
+            };
+        }
+
+        public AuthenticationResult Login(string token)
+        {
+            using (var connection = new SqlConnection(ConString))
+            using (var command = new SqlCommand())
+            {
+                command.Connection = connection;
+                connection.Open();
+                command.CommandText = "SELECT s.IndexNumber, s.Role FROM Student s, RefreshToken r " +
+                                    "WHERE r.IndexNumber = s.IndexNumber " +
+                                    "AND Token = @token " +
+                                    "AND ValidDate > GETDATE(); ";
+                command.Parameters.AddWithValue("token", token);
+
+                return Authenticate(command);
             }
-            return null;
+        }
+
+        private AuthenticationResult Authenticate(SqlCommand command) {
+            var result = new AuthenticationResult();
+
+            var dataReader = command.ExecuteReader();
+            {
+                if (!dataReader.Read())
+                {
+                    return null;
+                }
+                if (!command.Parameters.Contains("index"))
+                {
+                    command.Parameters.AddWithValue("index", dataReader["IndexNumber"].ToString());
+                }
+                result.Claims = new[]
+                {
+                        new Claim(ClaimTypes.Name, command.Parameters["index"].Value.ToString()),
+                        new Claim(ClaimTypes.Role, dataReader["Role"].ToString())
+                };
+            }
+            dataReader.Close();
+
+            result.RefreshToken = Guid.NewGuid().ToString();
+            AddToken(command, result.RefreshToken);
+            return result;
+
+        }
+
+        private void AddToken(SqlCommand command, string token)
+        {
+            command.CommandText ="INSERT INTO RefreshToken(Token, IndexNumber, ValidDate) "+
+                                 "VALUES (@newToken, @index, @validTo);";
+            command.Parameters.AddWithValue("newToken", token);
+            command.Parameters.AddWithValue("validTo", DateTime.Now.AddDays(1));
+            command.ExecuteNonQuery();
         }
 
 
 
-    }
+
+
+
+
+
+
+
+
+
+
+
+    }     
 }

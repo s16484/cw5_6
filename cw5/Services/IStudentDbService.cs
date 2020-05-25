@@ -15,7 +15,7 @@ namespace cw5.Services
         public PromoteStudentsResponse PromoteStudents(PromoteStudentsRequest request);
 
         public Student GetStudent(string id);
-        public Claim[] Login(LoginRequestDTO request);
-
+        public AuthenticationResult Login(LoginRequestDTO request);
+        public AuthenticationResult Login(string request);
     }
 }
